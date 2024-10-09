@@ -1,0 +1,20 @@
+{
+  "logo": "https://cdn2.downdetector.com/static/uploads/c/300/2a87b/download-2_V9174F4.png",
+  "home": "الرئيسية",
+  "pricing": "الأسعار",
+  "contactSales": "كلم المبيعات",
+  "trackShipment": "تتبع شحنتك",
+  "login": "تسجيل الدخول",
+  "switchLanguage": "ENG",
+  "trackingDetails": "تفاصيل التتبع",
+  "orderId": "رقم الطلب",
+  "orderDate": "تاريخ الطلب",
+  "estimatedDelivery": "التسليم المتوقع",
+  "deliveredOn": "تم التوصيل في",
+  "trackingTimeline": "الجدول الزمني للتتبع",
+  "shipmentDetails": "تفاصيل الشحنة",
+  "delivered": "تم التوصيل",
+  "outForDelivery": "خارج للتسليم",
+  "packageReceived": "تم استلام الطرد",
+  "ticketCreated": "تم إنشاء التذكرة"
+}
