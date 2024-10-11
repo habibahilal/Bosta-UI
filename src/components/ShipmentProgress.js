@@ -62,9 +62,21 @@ const ShipmentProgress = () => {
 
   if (!trackingData) {
     return (
-      <Alert sx={{ margin: "20px", padding: "20px" }} severity="error">
-        No such order ID.
-      </Alert>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          textAlign: "center",
+          padding: "100px 0",
+        }}
+      >
+        <h3>
+          Please input a tracking order ID to view shipment details- Click on
+          Track Shipment.
+        </h3>
+      </div>
     );
   }
 

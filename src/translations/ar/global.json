@@ -48,5 +48,7 @@
   "El-Mansoura Hub": "فرع المنصورة",
   "Cancellation - The customer refuses to give the shipment to the star": "تم إلغاء الشحنة - العميل يرفض تسليم الشحنة للنجم",
   "Delivery_Address": "عنوان التسليم",
-  "address": "امبابة شارع طلعت حرب مدينة بجوار محطة مترو امبابة"
+  "Address": "امبابة شارع طلعت حرب مدينة بجوار محطة مترو امبابة",
+  "Report_Problem": "الإبلاغ عن مشكلة",
+  "Is_there_a_problem_with_your_shipment": "هل هناك مشكلة في شحنتك؟"
 }

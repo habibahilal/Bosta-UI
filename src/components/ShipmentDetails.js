@@ -13,6 +13,16 @@ import TableRow from "@mui/material/TableRow";
 const ShipmentDetails = () => {
   const { t, currentLanguage } = useContext(TranslationContext);
   const { trackingData } = useContext(ShipmentTrackingContext);
+  const [page, setPage] = useState(0);
+  const rowsPerPage = 5;
+
+  useEffect(() => {
+    setPage(0);
+  }, [currentLanguage]);
+
+  if (!trackingData) {
+    return null;
+  }
 
   const getColorByStatus = (status) => {
     switch (status) {
@@ -51,16 +61,9 @@ const ShipmentDetails = () => {
       };
     }) || [];
 
-  const [page, setPage] = useState(0);
-  const rowsPerPage = 5;
-
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
-
-  useEffect(() => {
-    setPage(0);
-  }, [currentLanguage]);
 
   return (
     <div style={{ direction }}>

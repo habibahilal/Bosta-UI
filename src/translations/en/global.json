@@ -48,5 +48,7 @@
   "El-Mansoura Hub": "El-Mansoura Hub",
   "Cancellation - The customer refuses to give the shipment to the star": "Cancellation - The customer refuses to give the shipment to the star",
   "Delivery_Address": "Delivery Address",
-  "address": "Imbaba, Talat Harb Street, B City, Next to Imbaba Metro Station"
+  "Address": "Imbaba, Talat Harb Street, B City, Next to Imbaba Metro Station",
+  "Report_Problem": "Report Problem",
+  "Is_there_a_problem_with_your_shipment": "Is there a problem with your shipment?"
 }
