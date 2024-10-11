@@ -1,10 +1,9 @@
-/** @jsxImportSource @emotion/react */
-// import { css } from "@emotion/react";
 import React, { useContext } from "react";
 import styled from "@emotion/styled";
 import { TranslationContext } from "../context/TranslationContext";
 import Popover from "@mui/material/Popover";
 import ShipmentTrackingInput from "./ShipmentTrackingInput";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"; // Import the arrow icon
 
 const Banner = styled.div`
   background-color: #ffffff;
@@ -47,7 +46,7 @@ const LastSection = styled.div`
   padding: 0 20px;
 `;
 
-const SwitchLanguageButoon = styled.button`
+const SwitchLanguageButton = styled.button`
   background-color: transparent;
   color: #f40205;
   border: none;
@@ -63,7 +62,11 @@ const Button = styled.button`
   border: none;
   cursor: pointer;
   font-weight: 700;
+  display: flex;
+  align-items: center;
   padding: 0 !important;
+  color: ${(props) => (props.active ? "#f40205" : "#000")};
+  transition: color 0.2s ease-in-out;
 `;
 
 const Header = () => {
@@ -94,7 +97,7 @@ const Header = () => {
             <h2>{t("pricing")}</h2>
           </Button>
           <Button>
-            <h2>{t("contactSales")}</h2>{" "}
+            <h2>{t("contactSales")}</h2>
           </Button>
         </MiddleSection>
         <LastSection>
@@ -102,8 +105,10 @@ const Header = () => {
             aria-describedby={id}
             variant="contained"
             onClick={handleClick}
+            active={open}
           >
             <h2>{t("trackShipment")}</h2>
+            {open && <ArrowDropDownIcon />}
           </Button>
           <Popover
             id={id}
@@ -115,18 +120,18 @@ const Header = () => {
               horizontal: "left",
             }}
           >
-            <ShipmentTrackingInput />
+            <ShipmentTrackingInput onClosePopover={handleClose} />{" "}
           </Popover>
           <Button>
             <h2>{t("login")}</h2>
           </Button>
-          <SwitchLanguageButoon
+          <SwitchLanguageButton
             onClick={() =>
               changeLanguage(currentLanguage === "en" ? "ar" : "en")
             }
           >
             {currentLanguage === "en" ? "AR" : "ENG"}
-          </SwitchLanguageButoon>
+          </SwitchLanguageButton>
         </LastSection>
       </Banner>
     </>

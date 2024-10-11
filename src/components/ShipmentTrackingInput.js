@@ -1,37 +1,38 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "@emotion/styled";
+import { ShipmentTrackingContext } from "../context/ShipmentTrackingContext";
 import { TranslationContext } from "../context/TranslationContext";
 import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
-import FormHelperText from "@mui/joy/FormHelperText";
 import Input from "@mui/joy/Input";
 import Button from "@mui/joy/Button";
 import SearchIcon from "@mui/icons-material/Search";
+import axios from "axios";
 
 const Formdiv = styled.div`
   padding: 20px;
 `;
 
-const ShipmentTrackingInput = () => {
+const ShipmentTrackingInput = ({ onClosePopover }) => {
   const { t } = useContext(TranslationContext);
+  const { updateTrackingData } = useContext(ShipmentTrackingContext); // Use the tracking context
+  const [orderId, setOrderId] = useState("");
 
-  const [data, setData] = React.useState({
-    email: "",
-    status: "initial",
-  });
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setData((current) => ({ ...current, status: "loading" }));
     try {
-      // Replace timeout with real backend operation
-      setTimeout(() => {
-        setData({ email: "", status: "sent" });
-      }, 1500);
+      const response = await axios.get(
+        `https://tracking.bosta.co/shipments/track/${orderId}`
+      );
+      updateTrackingData(response.data);
+      onClosePopover();
     } catch (error) {
-      setData((current) => ({ ...current, status: "failure" }));
+      updateTrackingData(null);
+      onClosePopover();
+      console.error("Error fetching tracking data:", error);
     }
   };
+
   return (
     <Formdiv>
       <form onSubmit={handleSubmit} id="demo">
@@ -41,15 +42,11 @@ const ShipmentTrackingInput = () => {
             sx={{ "--Input-decoratorChildHeight": "45px" }}
             placeholder={t("orderId")}
             required
-            value={data.email}
-            onChange={(event) =>
-              setData({ email: event.target.value, status: "initial" })
-            }
-            error={data.status === "failure"}
+            value={orderId}
+            onChange={(e) => setOrderId(e.target.value)}
             endDecorator={
               <Button
                 variant="solid"
-                loading={data.status === "loading"}
                 type="submit"
                 sx={{
                   borderTopLeftRadius: 0,
@@ -64,20 +61,6 @@ const ShipmentTrackingInput = () => {
               </Button>
             }
           />
-          {data.status === "failure" && (
-            <FormHelperText
-              sx={(theme) => ({ color: theme.vars.palette.danger[400] })}
-            >
-              Oops! something went wrong, please try again later.
-            </FormHelperText>
-          )}
-          {data.status === "sent" && (
-            <FormHelperText
-              sx={(theme) => ({ color: theme.vars.palette.primary[400] })}
-            >
-              You are all set!
-            </FormHelperText>
-          )}
         </FormControl>
       </form>
     </Formdiv>
